@@ -75,7 +75,7 @@ As in, you can compose monads together by composing the functions wrapped into
 their contexts, where a monad (m) is a type constructor.
 
 Bind takes a monad `m a` and a function that can return a monad `(a -> m b)`,
-and returns a monad `m b`. Bind firts unwraps the value from the input monad's
+and returns a monad `m b`. Bind firsts unwraps the value from the input monad's
 context. Then it applies the input function on this value and finally puts the
 resulting value back into context and return this new value in context (monad) `m b`.
 
