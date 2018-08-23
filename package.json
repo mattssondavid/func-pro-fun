@@ -1,0 +1,15 @@
+{
+  "name": "func-pro-fun",
+  "version": "1.0.0",
+  "description": "Some functional programming learning stuff",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --experimental-modules --no-warnings src/test.mjs | tap -Rspec -"
+  },
+  "author": "David Mattsson",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "tap": "^12.0.1"
+  }
+}
