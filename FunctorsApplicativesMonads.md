@@ -11,8 +11,8 @@ Functors (or Applicatives) are not monads.
 Functional calls: f(a) === f a; f(g(a)) === f(g a); Functional declaration loves
 to ommit parantheses wherever applicable. f g a means f(g)(a).
 
-# Functors functions
-## fmap:: (a -> b) -> f a -> f b
+## Functors functions
+### fmap:: (a -> b) -> f a -> f b
 __Alias__: map, lift
 
 __Description__: fmap takes a function that can put any value into a context.
@@ -36,7 +36,7 @@ Mapping id over a functorial value must return the functorial value unchanged
 Laws of Composition: fmap (g . f) = fmap g . fmap f
 Should not matter how we compose the functions
 
-## return:: a -> f a
+### return:: a -> f a
 __Alias__: pure, unit, yield, point, of
 
 __Description__: Return lifts a single value into a context (a functor).
@@ -44,8 +44,8 @@ __Description__: Return lifts a single value into a context (a functor).
 __Why needed__: It is the function that wraps a value into a context.
 Laws that must be followed: Law of Identity
 
-# Applicatives functions
-## apply:: f (a -> b) -> f a -> f b
+## Applicatives functions
+### apply:: f (a -> b) -> f a -> f b
 __Alias__: ap, <*>
 
 __Description__: Apply unwraps a function wrapped inside a wrapped value into a
@@ -68,8 +68,8 @@ first place.
 
 __Laws that must be followed__: Law of Identity, Law of Homomorphism, Law of Interchange, Law of Composition
 
-# Monads functions
-## bind:: m a -> (a -> m b) -> m b
+## Monads functions
+### bind:: m a -> (a -> m b) -> m b
 __Alias__: flatMap, andThen, collect, selectMany, >>=
 
 __Description__: Allows composing of wrapped values "shoved" into wrapped functions.
@@ -89,12 +89,12 @@ You cannot, however, construct bind from just Apply and Return.
 
 __Laws that must be followed__: Law of Identity, Law of Associativity
 
-## Flatten
+### Flatten
 There is no monadic function to return the monadic value unwrapped out of the monadic context (or Functor, as the wrapping idea is extended from Functor). As in, there is no standard way to make a value escape its monadic context. This is because a monad is a pattern for composition and not a pattern for decomposition. If the monad needs the ability to escape a value, i.e. return the monadic wrapped value outside its context, then it is a function not part of the monad pattern.
 
 Lets call a function that can make a monadic wrapped value escape its context "Flatten", even though it makes no sense to allow a value once turned into a functor (and thus monad) able to escape.
 
-### flatten:: m a -> a
+#### flatten:: m a -> a
 __Alias__: extract
 
 __Description__: Allows decomposing of wrapped values, i.e. allows a wrapped value escape its context.
