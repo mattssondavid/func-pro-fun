@@ -3,6 +3,8 @@
 * https://fsharpforfunandprofit.com/posts/elevated-world-2/
 * http://learnyouahaskell.com/a-fistful-of-monads
 
+# Functors, Applicatives, and Monads
+
 Monads are extension of Functors and Applicatives. All Monads are Functors, but
 Functors (or Applicatives) are not monads.
 
