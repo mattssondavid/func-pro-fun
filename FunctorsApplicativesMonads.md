@@ -3,8 +3,8 @@
 * https://fsharpforfunandprofit.com/posts/elevated-world-2/
 * http://learnyouahaskell.com/a-fistful-of-monads
 
-Monads are extension of Functors and Applicatives. All monads are functors, but
-functors are not monads.
+Monads are extension of Functors and Applicatives. All Monads are Functors, but
+Functors (or Applicatives) are not monads.
 
 Functional calls: f(a) === f a; f(g(a)) === f(g a); Functional declaration loves
 to ommit parantheses wherever applicable. f g a means f(g)(a).
@@ -86,3 +86,17 @@ because if you Bind and Return you can construct both fmap and Apply from them.
 You cannot, however, construct bind from just Apply and Return.
 
 __Laws that must be followed__: Law of Identity, Law of Associativity
+
+## Flatten
+There is no monadic function to return the monadic value unwrapped out of the monadic context (or Functor, as the wrapping idea is extended from Functor). As in, there is no standard way to make a value escape its monadic context. This is because a monad is a pattern for composition and not a pattern for decomposition. If the monad needs the ability to escape a value, i.e. return the monadic wrapped value outside its context, then it is a function not part of the monad pattern.
+
+Lets call a function that can make a monadic wrapped value escape its context "Flatten", even though it makes no sense to allow a value once turned into a functor (and thus monad) able to escape.
+
+### flatten:: m a -> a
+__Alias__: extract
+
+__Description__: Allows decomposing of wrapped values, i.e. allows a wrapped value escape its context.
+
+__Why needed__: To make a wrapped value able to escape the monadic context is not part of a true monad. It is thus not always neccessary. Monad is a pattern to wrap values into a context and allow wrapped values composition. It is not a pattern of decomposition these values.
+
+__Laws that must be followed__: N/A
