@@ -8,4 +8,5 @@ export const Identity = value => ({
     // flatten:: m a -> a
     flatten: () => value
 });
+// return:: a -> m a
 Identity.return = value => Identity(value);
