@@ -1,3 +1,7 @@
+/*
+ * Identity Monad
+ */
+
 export const Identity = value => ({
     // fmap:: (a -> b) -> f a -> f b
     fmap: f => Identity(f(value)),

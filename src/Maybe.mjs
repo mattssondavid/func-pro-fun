@@ -1,3 +1,6 @@
+/*
+ * Maybe Monad
+ */
 
 // data Maybe a = Just a | Nothing
 export const Maybe = value => isNothing(value) ? Nothing() : Just(value);
