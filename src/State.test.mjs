@@ -74,8 +74,26 @@ mocha.describe('State', () => {
     });
 
     mocha.it('puts', () => {
+        const state = State.return(1)
+            .put(5)
+            .runState(2);
+        expect(state.value).to.equal(null);
+        expect(state.state).to.equal(5);
+    });
+
+    mocha.it('puts but keeps value', () => {
+        const state = State.return(1)
+            .putAndKeepValue(5)
+            .runState(2);
+        expect(state.value).to.equal(1);
+        expect(state.state).to.equal(5);
     });
 
     mocha.it('gets', () => {
+        const state = State.return(1)
+            .get()
+            .runState(2);
+        expect(state.value).to.equal(2);
+        expect(state.state).to.equal(2);
     });
 });

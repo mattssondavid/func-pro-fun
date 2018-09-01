@@ -2,6 +2,7 @@
  * State Monad
  */
 
+ // State s a = State { runState:: s -> (a, s) }
 export const State = stateFn => ({
     // fmap:: (a -> b) -> State s a -> State s b
     // fmap:: (a -> b) -> (s -> (a, s)) -> (s -> (b, s))
@@ -31,11 +32,15 @@ export const State = stateFn => ({
     },
     // runState:: s -> (a, s)  # runState unwraps the function in the State context
     runState: state => stateFn(state),
-
-    // ToDo:: Implement put & get
     // put:: s -> State s ()
     // put:: s -> (_ -> ((), s)
-    put: state => State(_ => ({value: null, state: state})),
+    put: newState => State(_ => ({value: null, state: newState})),
+    // putAndKeepValue:: s -> State s ()
+    // putAndKeepValue:: s -> (s' -> (a', s))
+    putAndKeepValue: newState => State(state => {
+        const valueState = stateFn(state);
+        return {value: valueState.value, state: newState};
+    }),
     // get:: State s s
     // get:: _ -> (s -> (s, s))
     get: _ => State(state => ({value: state, state: state})),
